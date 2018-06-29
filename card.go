@@ -6,9 +6,10 @@ import (
 	"time"
 )
 
-// Type Rank is a numeric representation of a card's rank
+// Rank is a numeric representation of a card's rank
 type Rank int
 
+// Rank constants
 const (
 	_ Rank = iota
 	_
@@ -27,6 +28,41 @@ const (
 	Ace
 )
 
+var ranks = []Rank{
+	Two,
+	Three,
+	Four,
+	Five,
+	Six,
+	Seven,
+	Eight,
+	Nine,
+	Ten,
+	Jack,
+	Queen,
+	King,
+	Ace,
+}
+
+// Suite is a numeric representation of a card's suit
+type Suite int
+
+// Suite constants
+const (
+	Diamonds Suite = iota
+	Hearts
+	Clubs
+	Spades
+)
+
+var suites = []Suite{
+	Diamonds,
+	Hearts,
+	Clubs,
+	Spades,
+}
+
+// String representation of a card's rank
 func (r Rank) String() string {
 	return [...]string{
 		"", "", "Two", "Three", "Four", "Five",
@@ -35,54 +71,24 @@ func (r Rank) String() string {
 	}[r]
 }
 
-// Type Suite is a numeric representation of a card's suit
-type Suite int
-
-const (
-	Diamonds Suite = iota
-	Hearts
-	Clubs
-	Spades
-)
-
+// String representation of a card's suite
 func (s Suite) String() string {
 	return [...]string{"Diamonds", "Hearts", "Clubs", "Spades"}[s]
 }
 
-// Type Card ...
+// Card type represents card's rank adn suite
 type Card struct {
 	Rank  Rank
 	Suite Suite
 }
 
+// Print card's rank and suite
 func (c Card) Print() {
 	fmt.Println(c.Rank.String() + " of " + c.Suite.String())
 }
 
+// NewCard generates new random card
 func (d Deck) NewCard() Card {
-	ranks := [...]Rank{
-		Two,
-		Three,
-		Four,
-		Five,
-		Six,
-		Seven,
-		Eight,
-		Nine,
-		Ten,
-		Jack,
-		Queen,
-		King,
-		Ace,
-	}
-
-	suites := []Suite{
-		Diamonds,
-		Hearts,
-		Clubs,
-		Spades,
-	}
-
 	rand.Seed(time.Now().UnixNano())
 
 	return Card{
