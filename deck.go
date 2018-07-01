@@ -26,6 +26,14 @@ func NewDeck() Deck {
 	return deck
 }
 
+// Deal a new hand with n cards from the deck
+func (d *Deck) Deal(n int) Hand {
+	var hand []Card
+	deck := *d
+	hand, *d = []Card(deck[0:n]), []Card(deck[n:])
+	return Hand(hand)
+}
+
 // Print cards in the deck
 func (d Deck) Print() {
 	for _, card := range d {
