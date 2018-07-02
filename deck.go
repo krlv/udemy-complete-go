@@ -1,17 +1,9 @@
 package main
 
+import "strings"
+
 // Deck is a slice of cards
 type Deck []Card
-
-// Hand is also a slice of cards
-type Hand []Card
-
-// Print cards in a hand
-func (h Hand) Print() {
-	for _, card := range h {
-		card.Print()
-	}
-}
 
 // NewDeck generates new deck of cards
 func NewDeck() Deck {
@@ -30,7 +22,7 @@ func NewDeck() Deck {
 func (d *Deck) Deal(n int) Hand {
 	var hand []Card
 	deck := *d
-	hand, *d = []Card(deck[0:n]), []Card(deck[n:])
+	hand, *d = []Card(deck[:n]), []Card(deck[n:])
 	return Hand(hand)
 }
 
@@ -39,4 +31,15 @@ func (d Deck) Print() {
 	for _, card := range d {
 		card.Print()
 	}
+}
+
+// ToString returns string representation of a deck
+func (d Deck) ToString() string {
+	var strs []string
+
+	for _, c := range d {
+		strs = append(strs, c.ToString())
+	}
+
+	return strings.Join(strs, "\n")
 }

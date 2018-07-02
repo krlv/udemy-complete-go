@@ -62,8 +62,8 @@ var suites = []Suite{
 	Spades,
 }
 
-// String representation of a card's rank
-func (r Rank) String() string {
+// ToString returns string representation of a card's rank
+func (r Rank) ToString() string {
 	return [...]string{
 		"", "", "Two", "Three", "Four", "Five",
 		"Six", "Seven", "Eight", "Nine", "Ten",
@@ -71,8 +71,8 @@ func (r Rank) String() string {
 	}[r]
 }
 
-// String representation of a card's suite
-func (s Suite) String() string {
+// ToString returns string representation of a card's suite
+func (s Suite) ToString() string {
 	return [...]string{"Diamonds", "Hearts", "Clubs", "Spades"}[s]
 }
 
@@ -84,7 +84,12 @@ type Card struct {
 
 // Print card's rank and suite
 func (c Card) Print() {
-	fmt.Println(c.Rank.String() + " of " + c.Suite.String())
+	fmt.Println(c.Rank.ToString() + " of " + c.Suite.ToString())
+}
+
+// ToString returns string representation of a card
+func (c Card) ToString() string {
+	return c.Rank.ToString() + " " + c.Suite.ToString()
 }
 
 // NewCard generates new random card
