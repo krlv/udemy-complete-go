@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"io/ioutil"
+	"strings"
+)
 
 // Deck is a slice of cards
 type Deck []Card
@@ -42,4 +45,9 @@ func (d Deck) ToString() string {
 	}
 
 	return strings.Join(strs, "\n")
+}
+
+// SaveToFile saves a deck to a file
+func (d Deck) SaveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.ToString()), 0644)
 }

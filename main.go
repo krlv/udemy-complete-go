@@ -11,4 +11,5 @@ func main() {
 
 	// deck without 5 cards
 	cards.Print()
+	cards.SaveToFile("test.txt")
 }
