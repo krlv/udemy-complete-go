@@ -11,5 +11,11 @@ func main() {
 
 	// deck without 5 cards
 	cards.Print()
+
+	// save deck to a file
 	cards.SaveToFile("test.txt")
+
+	// restore deck from a file
+	cards, _ = NewDeckFromFile("test.txt")
+	cards.Print()
 }

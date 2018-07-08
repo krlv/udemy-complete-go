@@ -8,6 +8,26 @@ import (
 // Deck is a slice of cards
 type Deck []Card
 
+// NewDeckFromFile restore a deck from a file
+func NewDeckFromFile(filename string) (Deck, error) {
+	bytes, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var cards []Card
+	for _, v := range strings.Split(string(bytes), "\n") {
+		card := strings.Split(v, " ")
+
+		cards = append(cards, Card{
+			RankFromString(card[0]),
+			SuiteFromString(card[1]),
+		})
+	}
+
+	return Deck(cards), nil
+}
+
 // NewDeck generates new deck of cards
 func NewDeck() Deck {
 	var deck Deck
