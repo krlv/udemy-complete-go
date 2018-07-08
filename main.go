@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
 	// full deck
 	cards := NewDeck()
@@ -16,6 +21,11 @@ func main() {
 	cards.SaveToFile("test.txt")
 
 	// restore deck from a file
-	cards, _ = NewDeckFromFile("test.txt")
+	cards, err := NewDeckFromFile("test.txt")
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+
 	cards.Print()
 }
