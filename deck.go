@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"strings"
+	"time"
 )
 
 // Deck is a slice of cards
@@ -44,7 +45,10 @@ func NewDeck() Deck {
 
 // Shuffle a deck
 func (d Deck) Shuffle() {
-	rand.Shuffle(len(d), func(i, j int) {
+	src := rand.NewSource(time.Now().UTC().UnixNano())
+	rnd := rand.New(src)
+
+	rnd.Shuffle(len(d), func(i, j int) {
 		d[i], d[j] = d[j], d[i]
 	})
 }
