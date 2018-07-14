@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -12,7 +13,7 @@ type Rank int
 // Rank constants
 const (
 	_ Rank = iota
-	_
+	Joker
 	Two
 	Three
 	Four
@@ -44,6 +45,41 @@ var ranks = []Rank{
 	Ace,
 }
 
+// NewRank creates a card's rank from string representation
+func NewRank(s string) Rank {
+	switch strings.Title(s) {
+	case "Two":
+		return Two
+	case "Three":
+		return Three
+	case "Four":
+		return Four
+	case "Five":
+		return Five
+	case "Six":
+		return Six
+	case "Seven":
+		return Seven
+	case "Eight":
+		return Eight
+	case "Nine":
+		return Nine
+	case "Ten":
+		return Ten
+	case "Jack":
+		return Jack
+	case "Queen":
+		return Queen
+	case "King":
+		return King
+	case "Ace":
+		return Ace
+	}
+
+	// unhandled error
+	return Ace
+}
+
 // ToString returns string representation of a card's rank
 func (r Rank) ToString() string {
 	return [...]string{
@@ -51,19 +87,6 @@ func (r Rank) ToString() string {
 		"Six", "Seven", "Eight", "Nine", "Ten",
 		"Jack", "Queen", "King", "Ace",
 	}[r]
-}
-
-// RankFromString converts string representation to card's rank
-func RankFromString(s string) Rank {
-	rmap := map[string]Rank{
-		"Two": Two, "Three": Three, "Four": Four,
-		"Five": Five, "Six": Six, "Seven": Seven,
-		"Eight": Eight, "Nine": Nine, "Ten": Ten,
-		"Jack": Jack, "Queen": Queen, "King": King,
-		"Ace": Ace,
-	}
-
-	return rmap[s]
 }
 
 // Suite is a numeric representation of a card's suit

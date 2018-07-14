@@ -22,7 +22,7 @@ func NewDeckFromFile(filename string) (Deck, error) {
 		card := strings.Split(v, " ")
 
 		cards = append(cards, Card{
-			RankFromString(card[0]),
+			NewRank(card[0]),
 			SuiteFromString(card[1]),
 		})
 	}
