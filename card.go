@@ -80,13 +80,38 @@ func NewRank(s string) Rank {
 	return Ace
 }
 
-// ToString returns string representation of a card's rank
-func (r Rank) ToString() string {
-	return [...]string{
-		"", "", "Two", "Three", "Four", "Five",
-		"Six", "Seven", "Eight", "Nine", "Ten",
-		"Jack", "Queen", "King", "Ace",
-	}[r]
+// String returns string representation of a card's rank
+func (r Rank) String() string {
+	switch r {
+	case Two:
+		return "Two"
+	case Three:
+		return "Three"
+	case Four:
+		return "Four"
+	case Five:
+		return "Five"
+	case Six:
+		return "Six"
+	case Seven:
+		return "Seven"
+	case Eight:
+		return "Eight"
+	case Nine:
+		return "Nine"
+	case Ten:
+		return "Ten"
+	case Jack:
+		return "Jack"
+	case Queen:
+		return "Queen"
+	case King:
+		return "King"
+	case Ace:
+		return "Ace"
+	}
+
+	return "Not Defined"
 }
 
 // Suite is a numeric representation of a card's suit
@@ -130,12 +155,12 @@ type Card struct {
 
 // Print card's rank and suite
 func (c Card) Print() {
-	fmt.Println(c.Rank.ToString() + " of " + c.Suite.ToString())
+	fmt.Println(c.Rank.String() + " of " + c.Suite.ToString())
 }
 
 // ToString returns string representation of a card
 func (c Card) ToString() string {
-	return c.Rank.ToString() + " " + c.Suite.ToString()
+	return c.Rank.String() + " " + c.Suite.ToString()
 }
 
 // NewCard generates new random card
