@@ -132,9 +132,20 @@ var suites = []Suite{
 	Spades,
 }
 
-// ToString returns string representation of a card's suite
-func (s Suite) ToString() string {
-	return [...]string{"Diamonds", "Hearts", "Clubs", "Spades"}[s]
+// String representation of a card's suite
+func (s Suite) String() string {
+	switch s {
+	case Diamonds:
+		return "Diamonds"
+	case Hearts:
+		return "Hearts"
+	case Clubs:
+		return "Clubs"
+	case Spades:
+		return "Spades"
+	}
+
+	return "Not Defined"
 }
 
 // SuiteFromString converts string representation to card's suite
@@ -155,12 +166,12 @@ type Card struct {
 
 // Print card's rank and suite
 func (c Card) Print() {
-	fmt.Println(c.Rank.String() + " of " + c.Suite.ToString())
+	fmt.Println(c.Rank.String() + " of " + c.Suite.String())
 }
 
 // ToString returns string representation of a card
 func (c Card) ToString() string {
-	return c.Rank.String() + " " + c.Suite.ToString()
+	return c.Rank.String() + " " + c.Suite.String()
 }
 
 // NewCard generates new random card

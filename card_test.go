@@ -118,3 +118,26 @@ func TestRankString(t *testing.T) {
 		t.Errorf("Expected to return string \"Not Defined\" for invalid rank")
 	}
 }
+
+func TestSuiteString(t *testing.T) {
+	if Diamonds.String() != "Diamonds" {
+		t.Errorf("Expected to return string \"Diamonds\" for suite Diamonds")
+	}
+
+	if Hearts.String() != "Hearts" {
+		t.Errorf("Expected to return string \"Hearts\" for suite Hearts")
+	}
+
+	if Clubs.String() != "Clubs" {
+		t.Errorf("Expected to return string \"Clubs\" for suite Clubs")
+	}
+
+	if Spades.String() != "Spades" {
+		t.Errorf("Expected to return string \"Spades\" for suite Spades")
+	}
+
+	suite := Suite(5).String()
+	if suite != "Not Defined" {
+		t.Errorf("Expected to return string \"Not Defined\" for invalid suite")
+	}
+}
