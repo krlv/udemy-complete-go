@@ -132,6 +132,23 @@ var suites = []Suite{
 	Spades,
 }
 
+// NewSuite creates a card's suite from string representation
+func NewSuite(s string) Suite {
+	switch strings.Title(s) {
+	case "Diamonds":
+		return Diamonds
+	case "Hearts":
+		return Hearts
+	case "Clubs":
+		return Clubs
+	case "Spades":
+		return Spades
+	}
+
+	// unhandled error
+	return Spades
+}
+
 // String representation of a card's suite
 func (s Suite) String() string {
 	switch s {
@@ -146,16 +163,6 @@ func (s Suite) String() string {
 	}
 
 	return "Not Defined"
-}
-
-// SuiteFromString converts string representation to card's suite
-func SuiteFromString(s string) Suite {
-	smap := map[string]Suite{
-		"Diamonds": Diamonds, "Hearts": Hearts,
-		"Clubs": Clubs, "Spades": Spades,
-	}
-
-	return smap[s]
 }
 
 // Card type represents card's rank adn suite

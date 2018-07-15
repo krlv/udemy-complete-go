@@ -23,7 +23,7 @@ func NewDeckFromFile(filename string) (Deck, error) {
 
 		cards = append(cards, Card{
 			NewRank(card[0]),
-			SuiteFromString(card[1]),
+			NewSuite(card[1]),
 		})
 	}
 

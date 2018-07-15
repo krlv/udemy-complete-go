@@ -119,6 +119,28 @@ func TestRankString(t *testing.T) {
 	}
 }
 
+func TestNewSuite(t *testing.T) {
+	if NewSuite("diamonds") != Diamonds {
+		t.Errorf("Expected to create suite Diamonds for value \"diamonds\"")
+	}
+
+	if NewSuite("Hearts") != Hearts {
+		t.Errorf("Expected to create suite Hearts for value \"Hearts\"")
+	}
+
+	if NewSuite("clubs") != Clubs {
+		t.Errorf("Expected to create suite Clubs for value \"clubs\"")
+	}
+
+	if NewSuite("Spades") != Spades {
+		t.Errorf("Expected to create suite Spades for value \"Spades\"")
+	}
+
+	if NewSuite("none") != Spades {
+		t.Errorf("Expected to create suite Spades for unkown value")
+	}
+}
+
 func TestSuiteString(t *testing.T) {
 	if Diamonds.String() != "Diamonds" {
 		t.Errorf("Expected to return string \"Diamonds\" for suite Diamonds")
