@@ -73,7 +73,7 @@ func (d Deck) ToString() string {
 	var strs []string
 
 	for _, c := range d {
-		strs = append(strs, c.ToString())
+		strs = append(strs, c.String())
 	}
 
 	return strings.Join(strs, "\n")

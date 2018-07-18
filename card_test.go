@@ -163,3 +163,17 @@ func TestSuiteString(t *testing.T) {
 		t.Errorf("Expected to return string \"Not Defined\" for invalid suite")
 	}
 }
+
+func TestCardString(t *testing.T) {
+	var c Card
+
+	c = Card{Ace, Spades}
+	if c.String() != "Ace Spades" {
+		t.Errorf("Expected to return string \"Ace Spades\", got %s", c.String())
+	}
+
+	c = Card{Two, Diamonds}
+	if c.String() != "Two Diamonds" {
+		t.Errorf("Expected to return string \"Two Diamonds\", got %s", c.String())
+	}
+}

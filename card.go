@@ -171,14 +171,14 @@ type Card struct {
 	Suite Suite
 }
 
+// String representation of a card
+func (c Card) String() string {
+	return c.Rank.String() + " " + c.Suite.String()
+}
+
 // Print card's rank and suite
 func (c Card) Print() {
 	fmt.Println(c.Rank.String() + " of " + c.Suite.String())
-}
-
-// ToString returns string representation of a card
-func (c Card) ToString() string {
-	return c.Rank.String() + " " + c.Suite.String()
 }
 
 // NewCard generates new random card
