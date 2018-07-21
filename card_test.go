@@ -165,9 +165,7 @@ func TestSuiteString(t *testing.T) {
 }
 
 func TestCardString(t *testing.T) {
-	var c Card
-
-	c = Card{Ace, Spades}
+	c := Card{Ace, Spades}
 	if c.String() != "Ace Spades" {
 		t.Errorf("Expected to return string \"Ace Spades\", got %s", c.String())
 	}
@@ -176,4 +174,15 @@ func TestCardString(t *testing.T) {
 	if c.String() != "Two Diamonds" {
 		t.Errorf("Expected to return string \"Two Diamonds\", got %s", c.String())
 	}
+}
+
+func ExampleCard_Print() {
+	c := Card{Ace, Spades}
+	c.Print()
+
+	c = Card{Two, Diamonds}
+	c.Print()
+	// Output:
+	// Ace of Spades
+	// Two of Diamonds
 }
