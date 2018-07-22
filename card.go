@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"strings"
-	"time"
 )
 
 // Rank is a numeric representation of a card's rank
@@ -171,6 +169,14 @@ type Card struct {
 	Suite Suite
 }
 
+// NewCard generates new card
+func NewCard(r string, s string) Card {
+	return Card{
+		NewRank(r),
+		NewSuite(s),
+	}
+}
+
 // String representation of a card
 func (c Card) String() string {
 	return c.Rank.String() + " " + c.Suite.String()
@@ -179,14 +185,4 @@ func (c Card) String() string {
 // Print card's rank and suite
 func (c Card) Print() {
 	fmt.Println(c.Rank.String() + " of " + c.Suite.String())
-}
-
-// NewCard generates new random card
-func (d Deck) NewCard() Card {
-	rand.Seed(time.Now().UnixNano())
-
-	return Card{
-		Rank:  ranks[rand.Intn(int(Ace))],
-		Suite: suites[rand.Intn(int(Spades))],
-	}
 }

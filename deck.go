@@ -20,11 +20,7 @@ func NewDeckFromFile(filename string) (Deck, error) {
 	var cards []Card
 	for _, v := range strings.Split(string(bytes), "\n") {
 		card := strings.Split(v, " ")
-
-		cards = append(cards, Card{
-			NewRank(card[0]),
-			NewSuite(card[1]),
-		})
+		cards = append(cards, NewCard(card[0], card[1]))
 	}
 
 	return Deck(cards), nil

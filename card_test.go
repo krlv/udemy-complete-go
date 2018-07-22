@@ -164,15 +164,27 @@ func TestSuiteString(t *testing.T) {
 	}
 }
 
+func TestNewCard(t *testing.T) {
+	c := NewCard("Ace", "Spades")
+	if c != (Card{Ace, Spades}) {
+		t.Errorf("Expected to return string \"Ace Spades\", got %s", c)
+	}
+
+	c = NewCard("Two", "Diamonds")
+	if c != (Card{Two, Diamonds}) {
+		t.Errorf("Expected to return string \"Two Diamonds\", got %s", c)
+	}
+}
+
 func TestCardString(t *testing.T) {
 	c := Card{Ace, Spades}
 	if c.String() != "Ace Spades" {
-		t.Errorf("Expected to return string \"Ace Spades\", got %s", c.String())
+		t.Errorf("Expected to return string \"Ace Spades\", got %s", c)
 	}
 
 	c = Card{Two, Diamonds}
 	if c.String() != "Two Diamonds" {
-		t.Errorf("Expected to return string \"Two Diamonds\", got %s", c.String())
+		t.Errorf("Expected to return string \"Two Diamonds\", got %s", c)
 	}
 }
 
