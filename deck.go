@@ -57,15 +57,8 @@ func (d *Deck) Deal(n int) Hand {
 	return Hand(hand)
 }
 
-// Print cards in the deck
-func (d Deck) Print() {
-	for _, card := range d {
-		card.Print()
-	}
-}
-
-// ToString returns string representation of a deck
-func (d Deck) ToString() string {
+// String representation of a deck
+func (d Deck) String() string {
 	var strs []string
 
 	for _, c := range d {
@@ -77,5 +70,12 @@ func (d Deck) ToString() string {
 
 // SaveToFile saves a deck to a file
 func (d Deck) SaveToFile(filename string) error {
-	return ioutil.WriteFile(filename, []byte(d.ToString()), 0644)
+	return ioutil.WriteFile(filename, []byte(d.String()), 0644)
+}
+
+// Print cards in the deck
+func (d Deck) Print() {
+	for _, card := range d {
+		card.Print()
+	}
 }
