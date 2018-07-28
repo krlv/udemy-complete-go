@@ -7,7 +7,19 @@ func TestNewDeckFromFile(t *testing.T) {
 }
 
 func TestNewDeck(t *testing.T) {
-	t.Skip()
+	d := NewDeck()
+
+	if len(d) != 52 {
+		t.Errorf("Expected deck of 52 cards, got %d cards", len(d))
+	}
+
+	if d[0] != (Card{Two, Diamonds}) {
+		t.Errorf("Expected first card to be Two of Diamonds, got %d", d[0])
+	}
+
+	if d[51] != (Card{Ace, Spades}) {
+		t.Errorf("Expected first card to be Ace of Spades, got %d", d[0])
+	}
 }
 
 func TestDeckShuffle(t *testing.T) {
