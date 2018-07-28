@@ -57,6 +57,11 @@ func (d *Deck) Deal(n int) Hand {
 	return Hand(hand)
 }
 
+// SaveToFile saves a deck to a file
+func (d Deck) SaveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.String()), 0644)
+}
+
 // String representation of a deck
 func (d Deck) String() string {
 	var strs []string
@@ -66,11 +71,6 @@ func (d Deck) String() string {
 	}
 
 	return strings.Join(strs, "\n")
-}
-
-// SaveToFile saves a deck to a file
-func (d Deck) SaveToFile(filename string) error {
-	return ioutil.WriteFile(filename, []byte(d.String()), 0644)
 }
 
 // Print cards in the deck
