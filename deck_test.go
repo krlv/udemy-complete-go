@@ -14,16 +14,26 @@ func TestNewDeck(t *testing.T) {
 	}
 
 	if d[0] != (Card{Two, Diamonds}) {
-		t.Errorf("Expected first card to be Two of Diamonds, got %d", d[0])
+		t.Errorf("Expected the first card to be Two of Diamonds, got %d", d[0])
 	}
 
 	if d[51] != (Card{Ace, Spades}) {
-		t.Errorf("Expected first card to be Ace of Spades, got %d", d[0])
+		t.Errorf("Expected the last card to be Ace of Spades, got %d", d[0])
 	}
 }
 
 func TestDeckShuffle(t *testing.T) {
-	t.Skip()
+	d1 := NewDeck()
+	d2 := NewDeck()
+	d1.Shuffle()
+
+	if d1[0] == d2[0] {
+		t.Errorf("Expected the first card to be different for shuffled deck")
+	}
+
+	if d1[51] == d2[51] {
+		t.Errorf("Expected the last card to be different for shuffled deck")
+	}
 }
 
 func TestDeckDeal(t *testing.T) {
