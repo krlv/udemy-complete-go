@@ -25,7 +25,7 @@ func TestNewDeck(t *testing.T) {
 func TestDeckShuffle(t *testing.T) {
 	d1 := NewDeck()
 	d2 := NewDeck()
-	d1.Shuffle()
+	d2.Shuffle()
 
 	if d1[0] == d2[0] {
 		t.Errorf("Expected the first card to be different for shuffled deck")
@@ -37,7 +37,24 @@ func TestDeckShuffle(t *testing.T) {
 }
 
 func TestDeckDeal(t *testing.T) {
-	t.Skip()
+	d := NewDeck()
+	h := d.Deal(5)
+
+	if len(d) != 47 {
+		t.Errorf("Expected deck of 47 cards, got %d cards", len(d))
+	}
+
+	if len(h) != 5 {
+		t.Errorf("Expected hand of 5 cards, got %d cards", len(h))
+	}
+
+	for _, dc := range d {
+		for _, hc := range h {
+			if hc == dc {
+				t.Errorf("Expected deck to not contains cards from hand")
+			}
+		}
+	}
 }
 
 func TestDeckSaveToFile(t *testing.T) {
