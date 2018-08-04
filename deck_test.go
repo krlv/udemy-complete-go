@@ -1,9 +1,35 @@
 package main
 
-import "testing"
+import (
+	"io/ioutil"
+	"os"
+	"testing"
+)
+
+const TestFileName = "_deck.test"
 
 func TestNewDeckFromFile(t *testing.T) {
-	t.Skip()
+	os.Remove(TestFileName)
+
+	// string representation of a deck
+	s := `Ace Spades
+Queen Hearts`
+	ioutil.WriteFile(TestFileName, []byte(s), 0644)
+
+	d, _ := NewDeckFromFile(TestFileName)
+	if len(d) != 2 {
+		t.Errorf("Expected deck of 2 cards, got %d cards", len(d))
+	}
+
+	if d[0] != (Card{Ace, Spades}) {
+		t.Errorf("Expected first card to be Ace of Spades, got %s", d[0])
+	}
+
+	if d[1] != (Card{Queen, Hearts}) {
+		t.Errorf("Expected first card to be Queen of Hearts, got %s", d[1])
+	}
+
+	os.Remove(TestFileName)
 }
 
 func TestNewDeck(t *testing.T) {
