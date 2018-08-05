@@ -6,17 +6,17 @@ import (
 	"testing"
 )
 
-const TestFileName = "_deck.test"
+const testFileName = "_deck.test"
 
 func TestNewDeckFromFile(t *testing.T) {
-	os.Remove(TestFileName)
+	os.Remove(testFileName)
 
 	// string representation of a deck
 	s := `Ace Spades
 Queen Hearts`
-	ioutil.WriteFile(TestFileName, []byte(s), 0644)
+	ioutil.WriteFile(testFileName, []byte(s), 0644)
 
-	d, _ := NewDeckFromFile(TestFileName)
+	d, _ := NewDeckFromFile(testFileName)
 	if len(d) != 2 {
 		t.Errorf("Expected deck of 2 cards, got %d cards", len(d))
 	}
@@ -29,7 +29,7 @@ Queen Hearts`
 		t.Errorf("Expected first card to be Queen of Hearts, got %s", d[1])
 	}
 
-	os.Remove(TestFileName)
+	os.Remove(testFileName)
 }
 
 func TestNewDeck(t *testing.T) {
@@ -84,7 +84,25 @@ func TestDeckDeal(t *testing.T) {
 }
 
 func TestDeckSaveToFile(t *testing.T) {
-	t.Skip()
+	os.Remove(testFileName)
+
+	d := Deck{
+		Card{Ace, Spades},
+		Card{Queen, Hearts},
+	}
+
+	d.SaveToFile(testFileName)
+
+	// expected string representation of a deck
+	s := `Ace Spades
+Queen Hearts`
+	b, _ := ioutil.ReadFile(testFileName)
+
+	if string(b) != s {
+		t.Errorf("Expected \"%s\" to be content of a file, got \"%s\"", string(b), s)
+	}
+
+	os.Remove(testFileName)
 }
 
 func TestDeckString(t *testing.T) {
