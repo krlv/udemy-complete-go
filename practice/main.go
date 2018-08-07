@@ -3,11 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	ints := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	var s string
 
-	for _, i := range ints {
-		s := "odd"
+	ints := make([]int, 11)
+	for i := range ints {
+		ints[i] = i
 
+		s = "odd"
 		if i%2 == 0 {
 			s = "even"
 		}
