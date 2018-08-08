@@ -5,7 +5,7 @@ import "testing"
 func TestPersonSetName(t *testing.T) {
 	var p Person
 
-	(&p).SetName("Sam")
+	p.SetName("Sam")
 
 	if p.FirstName != "Sam" {
 		t.Errorf("Expected name \"Sam\", got \"%s\"", p.FirstName)

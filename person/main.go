@@ -31,7 +31,7 @@ func main() {
 	}
 
 	// Thomas Anderson is Neo!
-	(&thomas).SetName("Neo")
+	thomas.SetName("Neo")
 
 	fmt.Printf("%+v\n", thomas)
 }
