@@ -15,6 +15,11 @@ type Person struct {
 	Contacts  ContactInfo
 }
 
+// SetName for a person
+func (p *Person) SetName(s string) {
+	p.FirstName = s
+}
+
 func main() {
 	thomas := Person{
 		FirstName: "Thomas",
@@ -24,5 +29,9 @@ func main() {
 			Zip:   20001,
 		},
 	}
+
+	// Thomas Anderson is Neo!
+	(&thomas).SetName("Neo")
+
 	fmt.Printf("%+v\n", thomas)
 }
