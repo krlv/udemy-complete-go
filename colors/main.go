@@ -14,6 +14,6 @@ func main() {
 	delete(colors, "black")
 
 	for c, h := range colors {
-		fmt.Printf("HEX representation for %s is %x\n", c, h)
+		fmt.Printf("HEX representation for %s is %06x\n", c, h)
 	}
 }
