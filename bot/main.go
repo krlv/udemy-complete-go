@@ -4,7 +4,7 @@ import "fmt"
 
 // Bot interface
 type Bot interface {
-	GetGreeting(s string) string
+	GetGreeting(string) string
 }
 
 // EnglishBot structure
