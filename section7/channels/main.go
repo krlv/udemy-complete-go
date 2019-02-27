@@ -13,9 +13,16 @@ func main() {
 		"https://amazon.com",
 	}
 
+	ch := make(chan bool)
+
+	for _, url := range urls {
+		go CheckURL(url, ch)
+	}
+
 	for _, url := range urls {
 		status := "not ok"
-		if CheckURL(url) {
+
+		if <-ch {
 			status = "ok"
 		}
 
@@ -23,17 +30,20 @@ func main() {
 	}
 }
 
-// CheckURL returns true if URL is ok (1XX, 2XX, 3XX status code),
-// otherwise returns false
-func CheckURL(url string) bool {
+// CheckURL sends true to the channel if URL is ok (1XX, 2XX, 3XX status code),
+// otherwise sends false
+func CheckURL(url string, ch chan bool) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return false
+		ch <- false
+		return
 	}
 
 	if resp.StatusCode > 399 {
-		return false
+		ch <- false
+		return
 	}
 
-	return true
+	ch <- true
+	return
 }
